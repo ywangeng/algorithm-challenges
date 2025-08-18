@@ -17,10 +17,10 @@ def solution(w: str, s: str):
 
     need = Counter(w)  # target char counts
     window = Counter(s[:m])  # counts for first window
-    res = []
+    ans = []
 
     if window == need:
-        res.append(0)
+        ans.append(0)
 
     # slide the window over S
     for i in range(m, n):
@@ -33,9 +33,9 @@ def solution(w: str, s: str):
             del window[out_ch]  # keep Counter sizes comparable
 
         if window == need:
-            res.append(i - m + 1)
+            ans.append(i - m + 1)
 
-    return res
+    return ans
 
 
 print(solution("ab", "abxaba"))  # [0, 3, 4]
