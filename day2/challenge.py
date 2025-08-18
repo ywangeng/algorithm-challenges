@@ -1,5 +1,5 @@
 """
-Qestion:
+Question:
 
 Given a word W and a string S, find all starting indices in S which are anagrams of W.
 
