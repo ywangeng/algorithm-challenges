@@ -27,9 +27,9 @@ def solution(s: str) -> str:
         lt2, rt2 = expand(i, i + 1)
 
         if rt1 - lt1 > end - start:
-            start, end = rt1, lt1
+            start, end = lt1, rt1
 
         if rt2 - lt2 > end - start:
-            start, end = rt2, lt2
+            start, end = lt2, rt2
 
     return s[start: end + 1]
