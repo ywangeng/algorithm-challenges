@@ -1,29 +1,36 @@
 """
 Question:
 
-A ternary search tree is a trie-like data structure where each node may have up to three children.
-Here is an example which represents the words code, cob, be, ax, war, and we.
+Implement a stack that has the following methods:
 
-       c
-    /  |  \
-   b   o   w
- / |   |   |
-a  e   d   a
-|    / |   | \
-x   b  e   r  e
-The tree is structured according to the following rules:
-
-left child nodes link to words lexicographically earlier than the parent prefix
-right child nodes link to words lexicographically later than the parent prefix
-middle child nodes continue the current word
-For instance, since code is the first word inserted in the tree, and cob lexicographically precedes cod,
-cob is represented as a left child extending from cod.
-
-Implement insertion and search functions for a ternary search tree.
+push(val), which pushes an element onto the stack
+pop(), which pops off and returns the topmost element of the stack. If there are no elements in the stack, then it should throw an error or return null.
+max(), which returns the maximum value in the stack currently. If there are no elements in the stack, then it should throw an error or return null.
+Each method should run in constant time.
 
 """
 
 
+class MaxStack:
+    def __init__(self):
+        self.stack = []  # main stack
+        self.max_stack = []  # auxiliary stack to track max values
 
+    def push(self, val):
+        self.stack.append(val)
+        # if max_stack is empty OR val >= current max, push it to max_stack
+        if not self.max_stack or val >= self.max_stack[-1]:
+            self.max_stack.append(val)
 
+    def pop(self):
+        if not self.stack:
+            return None  # or raise IndexError("pop from empty stack")
+        val = self.stack.pop()
+        if val == self.max_stack[-1]:
+            self.max_stack.pop()
+        return val
 
+    def max(self):
+        if not self.max_stack:
+            return None  # or raise ValueError("max from empty stack")
+        return self.max_stack[-1]
